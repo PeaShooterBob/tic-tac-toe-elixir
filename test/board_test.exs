@@ -2,11 +2,21 @@ defmodule BoardTest do
   use ExUnit.Case
   doctest Board
 
-  test "creates a board with 9 spaces" do
-    assert Board.create(3) == [0, 1, 2, 3, 4, 5, 6, 7, 8]
+  describe "Board.create/0" do
+    test "creates a board with 9 spaces" do
+      assert Board.create(3) == [0, 1, 2, 3, 4, 5, 6, 7, 8]
+    end
+
+    test "creates a board with 16 spaces" do
+      assert Board.create(4) == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    end
   end
 
-  test "creates a board with 16 spaces" do
-    assert Board.create(4) == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  describe "Board.mark/3" do
+    test "can mark itself" do
+      board = Board.create(3)
+      assert Board.mark(board, 1, "X") == [0, "X", 2, 3, 4, 5, 6, 7, 8]
+    end
   end
+
 end
