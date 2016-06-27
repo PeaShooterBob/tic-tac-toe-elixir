@@ -19,4 +19,19 @@ defmodule BoardTest do
     end
   end
 
+  describe "Board.rows/1" do
+    test "board of 9 spaces returns rows" do
+      board = Board.create(3)
+      assert Board.rows(board) == [ [0, 1, 2], [3, 4, 5], [6, 7, 8] ]
+    end
+
+    test "board of 16 spaces returns rows" do
+      board = Board.create(4)
+      assert Board.rows(board) == [ [0, 1, 2, 3],
+                                    [4, 5, 6 ,7],
+                                    [8, 9, 10, 11],
+                                    [12, 13, 14, 15] ]
+    end
+  end
+
 end
