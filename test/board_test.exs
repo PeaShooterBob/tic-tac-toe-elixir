@@ -55,4 +55,16 @@ defmodule BoardTest do
     end
   end
 
+  describe "Board.diagonals/1" do
+    test "board of 9 spaces returns diagonals" do
+      board = Board.create(3)
+      assert Board.diagonals(board) == [ [0, 4, 8], [2, 4, 6] ]
+    end
+
+    test "non empty board of 9 spaces return rows" do
+      new_board = Board.create(3)
+      board = Board.mark(new_board, 0, "X")
+      assert Board.diagonals(board) == [ ["X", 4, 8], [2, 4, 6] ]
+    end
+  end
 end
