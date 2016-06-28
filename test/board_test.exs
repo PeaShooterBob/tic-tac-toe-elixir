@@ -34,4 +34,25 @@ defmodule BoardTest do
     end
   end
 
+  describe "Board.columns/1" do
+    test "board of 9 spaces returns rows" do
+      board = Board.create(3)
+      assert Board.columns(board) == [ [0, 3, 6], [1, 4, 7], [2, 5, 8] ]
+    end
+
+    test "non empty board of 9 spaces return rows" do
+      new_board = Board.create(3)
+      board = Board.mark(new_board, 0, "X")
+      assert Board.columns(board) == [ ["X", 3, 6], [1, 4, 7], [2, 5, 8] ]
+    end
+
+    test "board of 16 spaces returns rows" do
+      board = Board.create(4)
+      assert Board.columns(board) == [ [0, 4, 8, 12],
+                                        [1, 5, 9, 13],
+                                        [2, 6, 10, 14],
+                                        [3, 7, 11, 15] ]
+    end
+  end
+
 end

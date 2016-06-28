@@ -1,7 +1,9 @@
 defmodule Board do
   def create(dimmension) do
-    end_index = size_of_board(dimmension) - 1
-    Enum.to_list(0..end_index)
+    dimmension
+    |> size_of_board
+    |> create_range
+    |> Enum.to_list
   end
 
   def mark(board, space, marker) do
@@ -12,11 +14,30 @@ defmodule Board do
     Enum.chunk(board, row_length(board))
   end
 
+  def columns(board) do
+    board
+    |> rows
+    |> List.zip
+    |> tuples_to_lists
+
+  end
+
   defp size_of_board(dimmension) do
     dimmension * dimmension
   end
 
   defp row_length(board) do
-    round(length(board)|>:math.sqrt)
+    board
+    |> length
+    |> :math.sqrt
+    |> round
+  end
+
+  defp tuples_to_lists(list_of_tuples) do
+    Enum.map(list_of_tuples, fn row -> Tuple.to_list(row) end)
+  end
+
+  defp create_range(board_size) do
+    0..(board_size-1)
   end
 end
