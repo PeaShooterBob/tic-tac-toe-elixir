@@ -1,6 +1,7 @@
 defmodule BoardTest do
   use ExUnit.Case
   alias TicTacToeElixir.Boards.TicTacToe, as: Board
+  alias TicTacToeElixir.Games.Marker, as: Marker
 
   describe "Board.create/0" do
     test "creates a board with 9 spaces" do
@@ -15,7 +16,7 @@ defmodule BoardTest do
   describe "Board.mark/3" do
     test "can mark itself" do
       board = Board.create(3, 3)
-      assert Board.mark(board, 1, "X") == [0, "X", 2, 3, 4, 5, 6, 7, 8]
+      assert Board.mark(board, 1, Marker.x_marker) == [0, Marker.x_marker, 2, 3, 4, 5, 6, 7, 8]
     end
   end
 
@@ -42,8 +43,8 @@ defmodule BoardTest do
 
     test "non empty board of 9 spaces return rows" do
       new_board = Board.create(3, 3)
-      board = Board.mark(new_board, 0, "X")
-      assert Board.columns(board) == [ ["X", 3, 6], [1, 4, 7], [2, 5, 8] ]
+      board = Board.mark(new_board, 0, Marker.x_marker)
+      assert Board.columns(board) == [ [Marker.x_marker, 3, 6], [1, 4, 7], [2, 5, 8] ]
     end
 
     test "board of 16 spaces returns rows" do
@@ -63,8 +64,8 @@ defmodule BoardTest do
 
     test "non empty board of 9 spaces return rows" do
       new_board = Board.create(3, 3)
-      board = Board.mark(new_board, 0, "X")
-      assert Board.diagonals(board) == [ ["X", 4, 8], [2, 4, 6] ]
+      board = Board.mark(new_board, 0, Marker.x_marker)
+      assert Board.diagonals(board) == [ [Marker.x_marker, 4, 8], [2, 4, 6] ]
     end
   end
 end

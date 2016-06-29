@@ -38,7 +38,7 @@ defmodule RulesTest do
 end
 
 defmodule MockBoardEvaluator do
-  @behaviour TicTacToeElixir.Boards.Evaluators.Evaluator
+  @behaviour TicTacToeElixir.Evaluators.Evaluator
 
   def any_sets_the_same?(board) do
     hd(board)
