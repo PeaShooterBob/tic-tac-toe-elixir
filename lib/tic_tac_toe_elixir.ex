@@ -1,2 +1,0 @@
-defmodule TicTacToeElixir do
-end
