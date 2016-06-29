@@ -1,8 +1,8 @@
-defmodule Board do
-  require IEx
-  def create(dimmension) do
-    dimmension
-    |> size_of_board
+defmodule TicTacToeElixir.Boards.TicTacToe do
+  @behaviour TicTacToeElixir.Boards.Board
+
+  def create(width, height) do
+    width * height
     |> create_range
     |> Enum.to_list
   end
@@ -24,10 +24,6 @@ defmodule Board do
 
   def diagonals(board) do
     [first_diagonal(board), second_diagonal(board)]
-  end
-
-  defp size_of_board(dimmension) do
-    dimmension * dimmension
   end
 
   defp row_length(board) do
