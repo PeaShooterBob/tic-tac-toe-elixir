@@ -1,11 +1,28 @@
-defmodule TicTacToeElixir.Printers.MessagePrinter do
+defmodule TicTacToeElixir.Printers.TicTacToe do
+  @behaviour TicTacToeElixir.Printers.MessagePrinter
+
   @space_divider " | "
   @newline "\n"
 
-  def board(rows, output_stream) do
-    rows
-    |> format_board
-    |> output_stream.puts
+  def board(rows) do
+    format_board(rows)
+  end
+
+  def game_mode do
+    "Welcome to tic tac toe. Please choose a game mode. Enter 'HH' for Human
+    vs Human or 'HC' for human vs computer"
+  end
+
+  def marker do
+    "Please select a marker.  Enter 'X' to go first, and 'O' to go second"
+  end
+
+  def turn(marker) do
+    ~s(It is your turn #{marker})
+  end
+
+  def print(printer, message) do
+    printer.puts(message)
   end
 
   defp format_board(rows) do
