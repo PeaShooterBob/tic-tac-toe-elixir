@@ -17,7 +17,7 @@ defmodule TicTacToeElixir.Evaluators.TicTacToe do
     rows(board) ++ columns(board) ++ diagonals(board)
   end
 
-  defp space_filled?(space) do
+  def space_filled?(space) do
     space == Marker.x_marker || space == Marker.o_marker
   end
 

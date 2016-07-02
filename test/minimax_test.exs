@@ -6,43 +6,28 @@ defmodule MinimaxTest do
   alias TicTacToeElixir.Rules.TicTacToe, as: Rules
 
   describe "Minimax.best_move/3" do
-
-    # test "returns winning move" do
-    #   board = [ "X", "X", 2, "3", "4", "5", "6", "7", "8" ]
-    #   assert Minimax.best_move(Marker.x_marker, board) == 2
-    # end
-
-    # test "returns a winning move" do
-    #   board = [0, 1, 2, 3, 4, 5, "X", "X", 8]
-    #   assert Minimax.best_move(Marker.x_marker, board) == 8
-    # end
-  end
-
-  describe "Minimax.minimax/?" do
-    test "returns postive score for winning board and maximizing player" do
-      board = [ Marker.x_marker, Marker.x_marker, Marker.x_marker,
-                3, 4, 5,
-                6, 7, 8 ]
-      score = Minimax.minimax(Marker.x_marker, board, true, Rules, Evaluator)
-      assert score == 10
+    test "blocks winning move" do
+      board = ["X", "X", 2, 3, 4, 5, 6, 7, 8]
+      best_move = Minimax.best_move("O", board, Rules, Evaluator)
+      assert best_move == 2
     end
 
-    test "returns 0 score for tied board" do
-      board = [ Marker.x_marker, Marker.o_marker, Marker.x_marker,
-                Marker.x_marker, Marker.o_marker, Marker.x_marker,
-                Marker.o_marker, Marker.x_marker, Marker.o_marker ]
-      score = Minimax.minimax(Marker.x_marker, board, false, Rules, Evaluator)
-      assert score == 0
+    test "blocks a two way fork for opponent" do
+      board = [0, "X", 2,
+              "X", "O", 5,
+               6, 7, 8]
+     best_move = Minimax.best_move("O", board, Rules, Evaluator)
+     assert best_move == 0
     end
 
-    test "returns negative score for winning board for minimizing player" do
-      board = [ Marker.o_marker, Marker.o_marker, Marker.o_marker,
-                3, 4, 5,
-                6, 7, 8 ]
-      score = Minimax.minimax(Marker.x_marker, board, false, Rules, Evaluator)
-      assert score == -10
+    test "does not create a two way unblocked fork for opponent" do
+      board = [ 0, 1, "X",
+                3, "O", 5,
+               "X", 7, 8]
+      best_move = Minimax.best_move("O", board, Rules, Evaluator)
+      assert Enum.member?([1, 3, 5, 7], best_move)
     end
   end
-
 
 end
+

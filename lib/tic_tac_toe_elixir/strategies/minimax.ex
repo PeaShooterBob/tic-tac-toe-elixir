@@ -1,14 +1,43 @@
 defmodule TicTacToeElixir.Strategies.Minimax do
+  alias TicTacToeElixir.Games.Marker, as: Marker
+  require IEx
+
   @behaviour TicTacToeElixir.Strategies.Strategy
 
-  def best_move(marker, board) do
-
+  def best_move(marker, board, rules, board_evaluator) do
+    move_scores = move_scores(marker, board, rules, board_evaluator)
+    move_scores
+    |> best_move_score
+    |> elem(0)
   end
 
-  def minimax(marker, board, maximizing_player, rules, board_evaluator) do
+  defp minimax(marker, board, maximizing_player, rules, board_evaluator) do
     case rules.over?(board, board_evaluator) do
       true -> score(board, maximizing_player, rules, board_evaluator)
+      false ->
+        marker = opposite_marker(marker)
+        maximizing_player = !maximizing_player
+        case maximizing_player do
+          true ->
+            children_board_scores(marker, board, maximizing_player, rules, board_evaluator)
+            |> Enum.max
+          false ->
+            children_board_scores(marker, board, maximizing_player, rules, board_evaluator)
+            |> Enum.min
+        end
     end
+  end
+
+  defp move_scores(marker, board, rules, board_evaluator) do
+    empty_spaces = empty_spaces(board, board_evaluator)
+    scores = children_board_scores(marker, board, true, rules, board_evaluator)
+    Enum.zip(empty_spaces, scores)
+  end
+
+  defp best_move_score(move_scores) do
+    Enum.max_by(move_scores, fn (move_score) ->
+      elem(move_score, 1)
+    end)
   end
 
   defp score(board, maximizing_player, rules, board_evaluator) do
@@ -20,5 +49,24 @@ defmodule TicTacToeElixir.Strategies.Minimax do
           false -> -10
         end
     end
+  end
+
+  defp children_board_scores(marker, board, maximizing_player, rules, board_evaluator) do
+    empty_spaces = empty_spaces(board, board_evaluator)
+    Enum.map(empty_spaces, fn (space) ->
+      board = List.replace_at(board, space, marker)
+      minimax(marker, board, maximizing_player, rules, board_evaluator)
+    end)
+  end
+
+  defp opposite_marker(marker) do
+    cond do
+      marker == Marker.x_marker -> Marker.o_marker
+      marker == Marker.o_marker -> Marker.x_marker
+    end
+  end
+
+  defp empty_spaces(board, board_evaluator) do
+    Enum.filter(board, fn(space) -> !board_evaluator.space_filled?(space) end)
   end
 end
