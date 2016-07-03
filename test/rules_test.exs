@@ -48,7 +48,11 @@ defmodule MockBoardEvaluator do
     List.last(board)
   end
 
-  def space_filled?(space) do
+  def empty_spaces(board) do
+    board
+  end
 
+  def depth(board) do
+    board
   end
 end

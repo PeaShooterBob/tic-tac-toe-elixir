@@ -1,6 +1,5 @@
 defmodule TicTacToeElixir.Strategies.Minimax do
   alias TicTacToeElixir.Games.Marker, as: Marker
-
   @behaviour TicTacToeElixir.Strategies.Strategy
 
   def best_move(marker, board, rules, board_evaluator) do
@@ -29,9 +28,9 @@ defmodule TicTacToeElixir.Strategies.Minimax do
   end
 
   defp move_scores(marker, board, rules, board_evaluator) do
-    empty_spaces = empty_spaces(board, board_evaluator)
-    original_depth = depth(board, board_evaluator)
+    original_depth = board_evaluator.depth(board)
     scores = children_board_scores(marker, board, true, original_depth, rules, board_evaluator)
+    empty_spaces = board_evaluator.empty_spaces(board)
     Enum.zip(empty_spaces, scores)
   end
 
@@ -42,10 +41,10 @@ defmodule TicTacToeElixir.Strategies.Minimax do
   end
 
   defp children_board_scores(marker, board, maximizing_player, original_depth, rules, board_evaluator) do
-    empty_spaces = empty_spaces(board, board_evaluator)
+    empty_spaces = board_evaluator.empty_spaces(board)
     Enum.map(empty_spaces, fn (space) ->
       board = List.replace_at(board, space, marker)
-      depth = depth(board, board_evaluator)
+      depth = board_evaluator.depth(board)
       minimax(marker, board, maximizing_player, original_depth, depth, rules, board_evaluator)
     end)
   end
@@ -65,19 +64,10 @@ defmodule TicTacToeElixir.Strategies.Minimax do
     original_depth - depth > 4
   end
 
-  defp depth(board, board_evaluator) do
-    empty_spaces = empty_spaces(board, board_evaluator)
-    length(empty_spaces)
-  end
-
   defp opposite_marker(marker) do
     cond do
       marker == Marker.x_marker -> Marker.o_marker
       marker == Marker.o_marker -> Marker.x_marker
     end
-  end
-
-  defp empty_spaces(board, board_evaluator) do
-    Enum.filter(board, fn(space) -> !board_evaluator.space_filled?(space) end)
   end
 end

@@ -13,11 +13,21 @@ defmodule TicTacToeElixir.Evaluators.TicTacToe do
     Enum.all?(board, fn (space) -> space_filled?(space) end)
   end
 
+  def empty_spaces(board) do
+    Enum.filter(board, fn(space) -> !space_filled?(space) end)
+  end
+
+  def depth(board) do
+    board
+    |> empty_spaces
+    |> length
+  end
+
   defp all_sets(board) do
     rows(board) ++ columns(board) ++ diagonals(board)
   end
 
-  def space_filled?(space) do
+  defp space_filled?(space) do
     space == Marker.x_marker || space == Marker.o_marker
   end
 
