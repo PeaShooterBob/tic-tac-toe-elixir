@@ -27,13 +27,13 @@ defmodule HumanTest do
 end
 
 defmodule MockUI do
-  def get_player_move do
+  def get_user_input do
     8
   end
 end
 
 defmodule MockUIWeb do
-  def get_player_move do
+  def get_user_input do
     4
   end
 end
