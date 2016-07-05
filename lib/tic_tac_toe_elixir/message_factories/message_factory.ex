@@ -1,7 +1,6 @@
-defmodule TicTacToeElixir.Printers.MessagePrinter do
+defmodule TicTacToeElixir.MessageFactories.MessageFactory do
   @callback board(List.rows) :: String
   @callback game_mode :: String
   @callback marker :: String
   @callback turn(String.marker) :: String
-  @callback print(Module.printer, String.message) :: any
 end

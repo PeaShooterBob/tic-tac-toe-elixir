@@ -1,5 +1,5 @@
-defmodule TicTacToeElixir.Printers.TicTacToe do
-  @behaviour TicTacToeElixir.Printers.MessagePrinter
+defmodule TicTacToeElixir.MessageFactories.TicTacToe do
+  @behaviour TicTacToeElixir.MessageFactories.MessageFactory
 
   @space_divider " | "
   @newline "\n"
@@ -19,10 +19,6 @@ defmodule TicTacToeElixir.Printers.TicTacToe do
 
   def turn(marker) do
     ~s(It is your turn #{marker})
-  end
-
-  def print(printer, message) do
-    printer.puts(message)
   end
 
   defp format_board(rows) do

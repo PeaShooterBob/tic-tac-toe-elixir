@@ -30,7 +30,7 @@ end
 defmodule MockCornerStrategy do
   @behaviour TicTacToeElixir.Strategies.Strategy
 
-  def best_move(_, _, _, _) do
+  def best_move(_marker, _board, _rules, _evaluator) do
     1
   end
 end
@@ -38,7 +38,7 @@ end
 defmodule MockCenterStrategy do
   @behaviour TicTacToeElixir.Strategies.Strategy
 
-  def best_move(_, _, _, _) do
+  def best_move(_marker, _board, _rules, _evaluator) do
     4
   end
 end
