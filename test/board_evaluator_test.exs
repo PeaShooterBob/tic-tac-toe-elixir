@@ -1,5 +1,5 @@
 defmodule BoardEvaluatorTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
   alias TicTacToeElixir.Evaluators.TicTacToe, as: BoardEvaluator
   alias TicTacToeElixir.Games.Marker, as: Marker
 

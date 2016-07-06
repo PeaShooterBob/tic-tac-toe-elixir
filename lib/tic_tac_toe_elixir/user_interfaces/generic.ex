@@ -5,6 +5,6 @@ defmodule TicTacToeElixir.UserInterfaces.Generic do
   end
 
   def get_user_input do
-    IO.gets ""
+    String.strip(IO.gets "")
   end
 end

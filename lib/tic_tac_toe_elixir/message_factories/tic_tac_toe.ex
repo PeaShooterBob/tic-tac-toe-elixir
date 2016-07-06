@@ -21,6 +21,10 @@ defmodule TicTacToeElixir.MessageFactories.TicTacToe do
     ~s(It is your turn #{marker})
   end
 
+  def game_won(marker) do
+    ~s(Congratulations #{marker} you have won the game!)
+  end
+
   defp format_board(rows) do
     Enum.reduce(rows, "", fn(row, acc) ->
       acc <> format_row(row) <> @newline

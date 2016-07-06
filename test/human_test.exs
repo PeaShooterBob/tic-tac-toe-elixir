@@ -1,5 +1,5 @@
 defmodule HumanTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
   alias TicTacToeElixir.Players.Human, as: Human
   alias TicTacToeElixir.Games.Marker, as: Marker
   alias TicTacToeElixir.Settings.Game, as: Settings

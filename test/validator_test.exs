@@ -6,17 +6,17 @@ defmodule ValidatorTest do
   describe "Validator.move?/2" do
     test "returns true if move is valid" do
       board = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-      assert Validator.move?(8, board) == true
+      assert Validator.move?("8", board) == true
     end
 
     test "returns false if move is not valid" do
       board = [Marker.x_marker, 1, 2, 3, 4, 5, 6, 7,8]
-      assert Validator.move?(0, board) == false
+      assert Validator.move?("0", board) == false
     end
 
     test "returns false if move is not part of board" do
       board = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-      assert Validator.move?(200, board) == false
+      assert Validator.move?("200", board) == false
     end
 
     test "returns false if move is a marker" do
