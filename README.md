@@ -11,7 +11,7 @@ Then you need elixir installed
 `mix deps.get` to get the dependencies
 
 ### Run the tests
-Not ideal, but `git checkout -b test`
+Not ideal, but `git checkout origin/test`
 `mix test` to run the tests
 
 ### Run the game
