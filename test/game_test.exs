@@ -24,8 +24,7 @@ defmodule GameTest do
           with_mock Rules,
           [over?: fn(board, _board_evaluator) -> board == all_x_row end] do
             with_mock MessageFactory,
-            [board: fn(rows) -> rows |> hd |> tl |> tl |> hd end,
-             game_won: fn(marker) -> ~s(#{marker} won) end] do
+            [board: fn(rows) -> rows |> hd |> tl |> tl |> hd end] do
               with_mock UserInterface,
               [print: fn(message) -> message end] do
                 with_mock Human,

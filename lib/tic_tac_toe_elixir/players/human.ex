@@ -1,5 +1,4 @@
 defmodule TicTacToeElixir.Players.Human do
-  alias TicTacToeElixir.Settings.Game, as: Settings
   @behaviour TicTacToeElixir.Players.Player
 
   def move(marker, board, _rules, _board_evaluator, _strategy, message_factory, user_interface, validator) do
