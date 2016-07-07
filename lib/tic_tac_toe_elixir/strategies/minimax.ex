@@ -61,7 +61,7 @@ defmodule TicTacToeElixir.Strategies.Minimax do
   end
 
   defp serach_depth_reached?(original_depth, depth) do
-    original_depth - depth > 4
+    original_depth - depth > 5
   end
 
   defp opposite_marker(marker) do
