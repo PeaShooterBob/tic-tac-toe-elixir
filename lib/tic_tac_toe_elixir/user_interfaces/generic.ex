@@ -5,6 +5,15 @@ defmodule TicTacToeElixir.UserInterfaces.Generic do
   end
 
   def get_user_input do
-    IO.gets ""
+    String.strip(IO.gets "")
+  end
+
+  def prompt_and_validate(message, valid?) do
+    print(message)
+    input = get_user_input
+    case valid?.(input) do
+      true -> input
+      false -> prompt_and_validate(message, valid?)
+    end
   end
 end

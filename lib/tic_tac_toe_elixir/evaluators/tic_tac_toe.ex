@@ -27,21 +27,7 @@ defmodule TicTacToeElixir.Evaluators.TicTacToe do
     rows(board) ++ columns(board) ++ diagonals(board)
   end
 
-  defp space_filled?(space) do
-    space == Marker.x_marker || space == Marker.o_marker
-  end
-
-  defp all_spaces_the_same?(spaces) do
-    length_uniq_spaces(spaces) == 1
-  end
-
-  defp length_uniq_spaces(spaces) do
-    spaces
-    |> Enum.uniq
-    |> length
-  end
-
-  defp rows(board) do
+  def rows(board) do
     Enum.chunk(board, row_length(board))
   end
 
@@ -54,6 +40,20 @@ defmodule TicTacToeElixir.Evaluators.TicTacToe do
 
   defp diagonals(board) do
     [first_diagonal(board), second_diagonal(board)]
+  end
+
+  defp space_filled?(space) do
+    space == Marker.x_marker || space == Marker.o_marker
+  end
+
+  defp all_spaces_the_same?(spaces) do
+    length_uniq_spaces(spaces) == 1
+  end
+
+  defp length_uniq_spaces(spaces) do
+    spaces
+    |> Enum.uniq
+    |> length
   end
 
   defp row_length(board) do

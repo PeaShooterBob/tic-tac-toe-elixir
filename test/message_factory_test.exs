@@ -36,5 +36,13 @@ defmodule MessageFactoryTest do
       assert String.contains?(turn_prompt, "turn")
     end
   end
+
+  describe "MessageFactory.game_won/1" do
+    test "tells a marker that they've won" do
+      game_won_message = MessageFactory.game_won(Marker.x_marker)
+      assert String.contains?(game_won_message, Marker.x_marker)
+      assert String.contains?(game_won_message, "won")
+    end
+  end
 end
 
