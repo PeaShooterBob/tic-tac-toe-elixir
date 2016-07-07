@@ -1,20 +1,19 @@
 # TicTacToeElixir
 
-**TODO: Add description**
-
 ## Installation
+Clone the repo
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+Then you need elixir installed
 
-  1. Add tic_tac_toe_elixir to your list of dependencies in `mix.exs`:
+* Using homebrew?
+`brew update` then `brew install elixir`
 
-        def deps do
-          [{:tic_tac_toe_elixir, "~> 0.0.1"}]
-        end
+`mix deps.get` to get the dependencies
 
-  2. Ensure tic_tac_toe_elixir is started before your application:
+### Run the tests
+Not ideal, but `git checkout -b test`
+`mix test` to run the tests
 
-        def application do
-          [applications: [:tic_tac_toe_elixir]]
-        end
-
+### Run the game
+`git checkout -b master`
+`mix run --no-halt`

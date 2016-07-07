@@ -1,5 +1,6 @@
 defmodule TicTacToeElixir.Mixfile do
   use Mix.Project
+  alias TicTacToeElixir.Configure, as: Configure
 
   def project do
     [app: :tic_tac_toe_elixir,
@@ -14,7 +15,9 @@ defmodule TicTacToeElixir.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [
+      applications: [:logger],
+      mod: {Configure, []}]
   end
 
   # Dependencies can be Hex packages:
